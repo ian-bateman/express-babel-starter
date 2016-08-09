@@ -41,7 +41,7 @@ export const updatePost = (req, res) => {
   updatedPost.title = req.body.title;
   updatedPost.tags = req.body.tags;
   updatedPost.content = req.body.content;
-  Post.findOneAndUpdate(req.params.id, updatedPost)
+  Post.update({ _id: req.params.id }, updatedPost)
   .then(() => {
     res.json('post updated');
   });
