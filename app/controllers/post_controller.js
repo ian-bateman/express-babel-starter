@@ -37,7 +37,11 @@ export const deletePost = (req, res) => {
   });
 };
 export const updatePost = (req, res) => {
-  Post.findOneAndUpdate({ _id: req.params.id }, { title: req.body.title, tags: req.body.tags, content: req.body.content })
+  const updatedPost = new Post();
+  updatedPost.title = req.body.title;
+  updatedPost.tags = req.body.tags;
+  updatedPost.content = req.body.content;
+  Post.findOneAndUpdate(req.params.id, updatedPost)
   .then(() => {
     res.json('post updated');
   });
