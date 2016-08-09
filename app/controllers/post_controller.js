@@ -37,11 +37,7 @@ export const deletePost = (req, res) => {
   });
 };
 export const updatePost = (req, res) => {
-  const updatedPost = new Post();
-  updatedPost.title = req.body.title;
-  updatedPost.tags = req.body.tags;
-  updatedPost.content = req.body.content;
-  Post.update({ _id: req.params.id }, updatedPost)
+  Post.update({ _id: req.params.id }, req.body)
   .then(() => {
     res.json('post updated');
   });
